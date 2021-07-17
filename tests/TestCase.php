@@ -1,9 +1,9 @@
 <?php
 
-namespace Shetabit\Multipay\Tests;
+namespace Tookantech\Multipay\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use Shetabit\Multipay\Tests\Drivers\BarDriver;
+use Tookantech\Multipay\Tests\Drivers\BarDriver;
 
 class TestCase extends BaseTestCase
 {

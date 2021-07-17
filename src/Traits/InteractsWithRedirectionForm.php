@@ -1,8 +1,8 @@
 <?php
 
-namespace Shetabit\Multipay\Traits;
+namespace Tookantech\Multipay\Traits;
 
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\RedirectionForm;
 
 trait InteractsWithRedirectionForm
 {

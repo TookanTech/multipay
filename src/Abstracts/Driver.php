@@ -1,11 +1,11 @@
 <?php
 
-namespace Shetabit\Multipay\Abstracts;
+namespace Tookantech\Multipay\Abstracts;
 
-use Shetabit\Multipay\Contracts\DriverInterface;
-use Shetabit\Multipay\Contracts\ReceiptInterface;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\Contracts\DriverInterface;
+use Tookantech\Multipay\Contracts\ReceiptInterface;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\RedirectionForm;
 
 abstract class Driver implements DriverInterface
 {

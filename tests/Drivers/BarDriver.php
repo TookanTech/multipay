@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Shetabit\Multipay\Tests\Drivers;
+namespace Tookantech\Multipay\Tests\Drivers;
 
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Contracts\ReceiptInterface;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Receipt;
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Contracts\ReceiptInterface;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Receipt;
+use Tookantech\Multipay\RedirectionForm;
 
 class BarDriver extends Driver
 {

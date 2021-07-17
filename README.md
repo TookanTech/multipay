@@ -126,7 +126,7 @@ Then fill the credentials for that gateway in the drivers array.
 c. Instantiate the `Payment` class and **pass configs to it** like the below:
 
 ```php
-    use Shetabit\Multipay\Payment;
+    use Tookantech\Multipay\Payment;
 
     // load the config file from your project
     $paymentConfig = require('path/to/payment.php');
@@ -147,7 +147,7 @@ In your code, use it like the below:
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
+use Tookantech\Multipay\Invoice;
 ...
 
 // Create new invoice.
@@ -187,8 +187,8 @@ We purchase the invoice to retrieve transaction id:
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Payment;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Payment;
 ...
 
 // load the config file from your project
@@ -225,8 +225,8 @@ After purchasing the invoice, we can redirect the user to the bank payment page:
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Payment;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Payment;
 ...
 
 // load the config file from your project
@@ -269,8 +269,8 @@ When user has completed the payment, the bank redirects them to your website, th
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Payment;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\Payment;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
 ...
 
 // load the config file from your project
@@ -305,8 +305,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -331,8 +331,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -354,8 +354,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -380,8 +380,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
 
   // load the config file from your project
@@ -424,16 +424,16 @@ First you have to add the name of your driver, in the drivers array and also you
 ```
 
 Now you have to create a Driver Map Class that will be used to pay invoices.
-In your driver, You just have to extend `Shetabit\Multipay\Abstracts\Driver`.
+In your driver, You just have to extend `Tookantech\Multipay\Abstracts\Driver`.
 
 Eg. You created a class: `App\Packages\Multipay\Driver\MyDriver`.
 
 ```php
 namespace App\Packages\Multipay\Driver;
 
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Shetabit\Multipay\{Contracts\ReceiptInterface, Invoice, RedirectionForm, Receipt};
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\{Contracts\ReceiptInterface, Invoice, RedirectionForm, Receipt};
 
 class MyDriver extends Driver
 {

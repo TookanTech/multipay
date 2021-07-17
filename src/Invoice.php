@@ -1,9 +1,9 @@
 <?php
 
-namespace Shetabit\Multipay;
+namespace Tookantech\Multipay;
 
 use Ramsey\Uuid\Uuid;
-use Shetabit\Multipay\Traits\HasDetail;
+use Tookantech\Multipay\Traits\HasDetail;
 
 class Invoice
 {

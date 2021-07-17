@@ -1,15 +1,15 @@
 <?php
 
-namespace Shetabit\Multipay\Drivers\Local;
+namespace Tookantech\Multipay\Drivers\Local;
 
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Shetabit\Multipay\Exceptions\PurchaseFailedException;
-use Shetabit\Multipay\Contracts\ReceiptInterface;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Receipt;
-use Shetabit\Multipay\RedirectionForm;
-use Shetabit\Multipay\Request;
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\Exceptions\PurchaseFailedException;
+use Tookantech\Multipay\Contracts\ReceiptInterface;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Receipt;
+use Tookantech\Multipay\RedirectionForm;
+use Tookantech\Multipay\Request;
 
 class Local extends Driver
 {

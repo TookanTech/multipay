@@ -125,7 +125,7 @@ b. 在配置文件中，您可以将 `default`设置项设置为你希望的付�
 c. Instantiate the `Payment` class and **pass configs to it** like the below:
 
 ```php
-    use Shetabit\Multipay\Payment
+    use Tookantech\Multipay\Payment
 
     // load the config file from your project
     $paymentConfig = require('path/to/payment.php');
@@ -146,7 +146,7 @@ c. Instantiate the `Payment` class and **pass configs to it** like the below:
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
+use Tookantech\Multipay\Invoice;
 ...
 
 // Create new invoice.
@@ -186,8 +186,8 @@ $invoice->detail('detailName1','your detail1 goes here')
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Payment;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Payment;
 ...
 
 // load the config file from your project
@@ -224,8 +224,8 @@ $payment->callbackUrl('http://yoursite.com/verify')->purchase(
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Payment;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Payment;
 ...
 
 // load the config file from your project
@@ -267,8 +267,8 @@ return $payment->purchase(
 
 ```php
 // At the top of the file.
-use Shetabit\Multipay\Payment;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\Payment;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
 ...
 
 // load the config file from your project
@@ -303,8 +303,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
     
   // load the config file from your project
@@ -329,8 +329,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -352,8 +352,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -378,8 +378,8 @@ try {
 
   ```php
   // At the top of the file.
-  use Shetabit\Multipay\Invoice;
-  use Shetabit\Multipay\Payment;
+  use Tookantech\Multipay\Invoice;
+  use Tookantech\Multipay\Payment;
   ...
   
   // load the config file from your project
@@ -422,16 +422,16 @@ try {
 ```
 
 现在您必须创建一个将用于支付清单的驱动程序映射类。
-在你的驱动中，你必须继承 `Shetabit\Multipay\Abstracts\Driver`.这个类
+在你的驱动中，你必须继承 `Tookantech\Multipay\Abstracts\Driver`.这个类
 
 例如，你创建了这样一个类: `App\Packages\PaymentDriver\MyDriver`。
 
 ```php
 namespace App\Packages\PaymentDriver;
 
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Shetabit\Multipay\{Contracts\ReceiptInterface, Invoice, RedirectionForm, Receipt};
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\{Contracts\ReceiptInterface, Invoice, RedirectionForm, Receipt};
 
 class MyDriver extends Driver
 {
