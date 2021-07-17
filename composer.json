@@ -1,5 +1,5 @@
 {
-    "name": "shetabit/multipay",
+    "name": "tookantech/multipay",
     "type": "library",
     "description": "PHP Payment Gateway Integration Package",
     "keywords": [
@@ -95,12 +95,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Shetabit\\Multipay\\": "src"
+            "Tookantech\\Multipay\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Shetabit\\Multipay\\Tests\\": "tests"
+            "Tookantech\\Multipay\\Tests\\": "tests"
         }
     },
     "scripts": {

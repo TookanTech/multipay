@@ -1,8 +1,8 @@
 <?php
 
-namespace Shetabit\Multipay\Contracts;
+namespace Tookantech\Multipay\Contracts;
 
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\RedirectionForm;
 
 interface DriverInterface
 {

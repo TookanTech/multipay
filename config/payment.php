@@ -237,29 +237,29 @@ return [
     | You can create your own driver if you like and add the
     | config in the drivers array and the class to use for
     | here with the same name. You will have to extend
-    | Shetabit\Multipay\Abstracts\Driver in your driver.
+    | Tookantech\Multipay\Abstracts\Driver in your driver.
     |
     */
     'map' => [
-        'local' => \Shetabit\Multipay\Drivers\Local\Local::class,
-        'asanpardakht' => \Shetabit\Multipay\Drivers\Asanpardakht\Asanpardakht::class,
-        'behpardakht' => \Shetabit\Multipay\Drivers\Behpardakht\Behpardakht::class,
-        'digipay' => \Shetabit\Multipay\Drivers\Digipay\Digipay::class,
-        'idpay' => \Shetabit\Multipay\Drivers\Idpay\Idpay::class,
-        'irankish' => \Shetabit\Multipay\Drivers\Irankish\Irankish::class,
-        'nextpay' => \Shetabit\Multipay\Drivers\Nextpay\Nextpay::class,
-        'parsian' => \Shetabit\Multipay\Drivers\Parsian\Parsian::class,
-        'pasargad' => \Shetabit\Multipay\Drivers\Pasargad\Pasargad::class,
-        'payir' => \Shetabit\Multipay\Drivers\Payir\Payir::class,
-        'paypal' => \Shetabit\Multipay\Drivers\Paypal\Paypal::class,
-        'payping' => \Shetabit\Multipay\Drivers\Payping\Payping::class,
-        'paystar' => \Shetabit\Multipay\Drivers\Paystar\Paystar::class,
-        'poolam' => \Shetabit\Multipay\Drivers\Poolam\Poolam::class,
-        'sadad' => \Shetabit\Multipay\Drivers\Sadad\Sadad::class,
-        'saman' => \Shetabit\Multipay\Drivers\Saman\Saman::class,
-        'sepehr' => \Shetabit\Multipay\Drivers\Sepehr\Sepehr::class,
-        'yekpay' => \Shetabit\Multipay\Drivers\Yekpay\Yekpay::class,
-        'zarinpal' => \Shetabit\Multipay\Drivers\Zarinpal\Zarinpal::class,
-        'zibal' => \Shetabit\Multipay\Drivers\Zibal\Zibal::class,
+        'local' => \Tookantech\Multipay\Drivers\Local\Local::class,
+        'asanpardakht' => \Tookantech\Multipay\Drivers\Asanpardakht\Asanpardakht::class,
+        'behpardakht' => \Tookantech\Multipay\Drivers\Behpardakht\Behpardakht::class,
+        'digipay' => \Tookantech\Multipay\Drivers\Digipay\Digipay::class,
+        'idpay' => \Tookantech\Multipay\Drivers\Idpay\Idpay::class,
+        'irankish' => \Tookantech\Multipay\Drivers\Irankish\Irankish::class,
+        'nextpay' => \Tookantech\Multipay\Drivers\Nextpay\Nextpay::class,
+        'parsian' => \Tookantech\Multipay\Drivers\Parsian\Parsian::class,
+        'pasargad' => \Tookantech\Multipay\Drivers\Pasargad\Pasargad::class,
+        'payir' => \Tookantech\Multipay\Drivers\Payir\Payir::class,
+        'paypal' => \Tookantech\Multipay\Drivers\Paypal\Paypal::class,
+        'payping' => \Tookantech\Multipay\Drivers\Payping\Payping::class,
+        'paystar' => \Tookantech\Multipay\Drivers\Paystar\Paystar::class,
+        'poolam' => \Tookantech\Multipay\Drivers\Poolam\Poolam::class,
+        'sadad' => \Tookantech\Multipay\Drivers\Sadad\Sadad::class,
+        'saman' => \Tookantech\Multipay\Drivers\Saman\Saman::class,
+        'sepehr' => \Tookantech\Multipay\Drivers\Sepehr\Sepehr::class,
+        'yekpay' => \Tookantech\Multipay\Drivers\Yekpay\Yekpay::class,
+        'zarinpal' => \Tookantech\Multipay\Drivers\Zarinpal\Zarinpal::class,
+        'zibal' => \Tookantech\Multipay\Drivers\Zibal\Zibal::class,
     ]
 ];

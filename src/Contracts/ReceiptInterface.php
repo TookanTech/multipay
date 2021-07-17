@@ -1,6 +1,6 @@
 <?php
 
-namespace Shetabit\Multipay\Contracts;
+namespace Tookantech\Multipay\Contracts;
 
 use Carbon\Carbon;
 

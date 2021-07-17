@@ -1,8 +1,8 @@
 <?php
 
-namespace Shetabit\Multipay\Tests\Mocks;
+namespace Tookantech\Multipay\Tests\Mocks;
 
-use Shetabit\Multipay\Payment;
+use Tookantech\Multipay\Payment;
 
 class MockPaymentManager extends Payment
 {

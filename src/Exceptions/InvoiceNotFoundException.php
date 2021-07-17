@@ -1,6 +1,6 @@
 <?php
 
-namespace Shetabit\Multipay\Exceptions;
+namespace Tookantech\Multipay\Exceptions;
 
 class InvoiceNotFoundException extends \Exception
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shetabit\Multipay;
+namespace Tookantech\Multipay;
 
 class Request
 {

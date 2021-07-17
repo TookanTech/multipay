@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Shetabit\Multipay\Tests\Traits;
+namespace Tookantech\Multipay\Tests\Traits;
 
 use Carbon\Carbon;
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\RedirectionForm;
 
 trait DriverCommon
 {
@@ -58,7 +58,7 @@ trait DriverCommon
     /**
      * Test Verify method
      *
-     * @throws \Shetabit\Multipay\Exceptions\InvoiceNotFoundException
+     * @throws \Tookantech\Multipay\Exceptions\InvoiceNotFoundException
      */
     public function testVerify()
     {

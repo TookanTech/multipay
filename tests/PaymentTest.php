@@ -1,12 +1,12 @@
 <?php
 
-namespace Shetabit\Multipay\Tests;
+namespace Tookantech\Multipay\Tests;
 
 use Carbon\Carbon;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\RedirectionForm;
-use Shetabit\Multipay\Tests\Drivers\BarDriver;
-use Shetabit\Multipay\Tests\Mocks\MockPaymentManager;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\RedirectionForm;
+use Tookantech\Multipay\Tests\Drivers\BarDriver;
+use Tookantech\Multipay\Tests\Mocks\MockPaymentManager;
 
 class PaymentTest extends TestCase
 {

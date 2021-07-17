@@ -1,16 +1,16 @@
 <?php
 
-namespace Shetabit\Multipay\Drivers\Behpardakht;
+namespace Tookantech\Multipay\Drivers\Behpardakht;
 
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Shetabit\Multipay\Exceptions\PurchaseFailedException;
-use Shetabit\Multipay\Contracts\ReceiptInterface;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Receipt;
-use Shetabit\Multipay\Request;
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Exceptions\InvalidPaymentException;
+use Tookantech\Multipay\Exceptions\PurchaseFailedException;
+use Tookantech\Multipay\Contracts\ReceiptInterface;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Receipt;
+use Tookantech\Multipay\Request;
 use Carbon\Carbon;
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\RedirectionForm;
 
 class Behpardakht extends Driver
 {
@@ -67,7 +67,7 @@ class Behpardakht extends Driver
         } else {
             $soap = new \SoapClient($this->settings->apiPurchaseUrl);
         }
-        
+
         $response = $soap->bpPayRequest($this->preparePurchaseData());
 
         // fault has happened in bank gateway
@@ -125,7 +125,7 @@ class Behpardakht extends Driver
         }
 
         $data = $this->prepareVerificationData();
-        
+
         if ($_SERVER['SERVER_PROTOCOL'] == "HTTP/2.0") {
             $context = stream_context_create(
                 [
@@ -163,9 +163,9 @@ class Behpardakht extends Driver
             }
             throw new InvalidPaymentException($this->translateStatus($settleResponse), $settleResponse);
         }
-        
+
         $receipt = $this->createReceipt($data['saleReferenceId']);
-        
+
         $receipt->detail([
             "RefId" => Request::input('RefId'),
             "SaleOrderId" => Request::input('SaleOrderId'),
