@@ -55,13 +55,14 @@ class Walleta extends Driver
      */
     public function purchase()
     {
+
         $result = $this->token();
 
         if (!isset($result['status_code']) or $result['status_code'] != 200) {
-            $this->purchaseFailed($result['status_code']);
+            $this->purchaseFailed($result['content']['type']);
         }
 
-        $this->invoice->transactionId($result['content']);
+        $this->invoice->transactionId($result['content']['token']);
 
         // return the transaction's id
         return $this->invoice->getTransactionId();
@@ -74,16 +75,7 @@ class Walleta extends Driver
      */
     public function pay(): RedirectionForm
     {
-        $data = [
-            'RefID' => $this->invoice->getTransactionId()
-        ];
-
-        //set mobileap for get user cards
-        if (!empty($this->invoice->getDetails()['mobile'])) {
-            $data['mobileap'] = $this->invoice->getDetails()['mobile'];
-        }
-
-        return $this->redirectWithForm($this->settings->apiPaymentUrl, $data, 'POST');
+        return $this->redirectWithForm($this->settings->apiPaymentUrl . $this->invoice->getTransactionId(), [], 'GET');
     }
 
     /**
@@ -95,31 +87,13 @@ class Walleta extends Driver
      */
     public function verify(): ReceiptInterface
     {
-        $result = $this->transactionResult();
+        $result = $this->verifyTransaction();
 
         if (!isset($result['status_code']) or $result['status_code'] != 200) {
-            $this->purchaseFailed($result['status_code']);
+            $this->purchaseFailed($result['status_code']['type']);
         }
 
-        $this->payGateTransactionId = $result['content']['payGateTranID'];
-
-        //step1: verify
-        $verify_result = $this->verifyTransaction();
-
-        if (!isset($verify_result['status_code']) or $verify_result['status_code'] != 200) {
-            $this->purchaseFailed($verify_result['status_code']);
-        }
-
-        //step2: settlement
-        $this->settlement();
-
-        $receipt = $this->createReceipt($this->payGateTransactionId);
-        $receipt->detail([
-            'traceNo' => $this->payGateTransactionId,
-            'referenceNo' => $result['content']['rrn'],
-            'transactionId' => $result['content']['refID'],
-            'cardNo' => $result['content']['cardNumber'],
-        ]);
+        $receipt = $this->createReceipt($this->invoice->getUuid());
 
         return $receipt;
     }
@@ -174,16 +148,57 @@ class Walleta extends Driver
         return $this->callApi('POST', $this->settings->apiPurchaseUrl, [
             'merchant_code' => $this->settings->merchantId,
             'invoice_reference' => $this->invoice->getUuid(),
-            'invoice_date' => now()->toDateTimeLocalString(),###
+            'invoice_date' => now()->toDateTimeLocalString(),
             'invoice_amount' => $this->invoice->getAmount(),
             'payer_first_name' => $this->invoice->getDetails()['first_name'],
             'payer_last_name' => $this->invoice->getDetails()['last_name'],
             'payer_national_code' => $this->invoice->getDetails()['national_code'],
-            'payer_mobile' => $$this->invoice->getDetails()['cellphone'],
+            'payer_mobile' => $this->invoice->getDetails()['mobile'],
             'callback_url' => $this->settings->callbackUrl,
-            'items' => $this->invoice->getDetails()['items'],
+            'items' => $this->getItems(),
         ]);
     }
+
+    /**
+     * call verift transaction request
+     *
+     * @return array
+     */
+    public function verifyTransaction(): array
+    {
+        return $this->callApi('POST', $this->settings->apiVerificationUrl, [
+            'merchant_code' => $this->settings->merchantId,
+            'token' => $this->invoice->getTransactionId(),
+            'invoice_reference' => $this->invoice->getUuid(),
+            'invoice_amount' => $this->invoice->getAmount(),
+        ]);
+    }
+
+    /**
+     * get Items for
+     *
+     *
+     */
+    private function getItems()
+    {
+        /**
+         * example data
+         *
+         *   $items = [
+         *       [
+         *           "reference" => "string",
+         *           "name" => "string",
+         *           "quantity" => 0,
+         *           "unit_price" => 0,
+         *           "unit_discount" => 0,
+         *           "unit_tax_amount" => 0,
+         *           "total_amount" => 0
+         *       ]
+         *   ];
+         */
+        return $this->invoice->getDetails()['items'];
+    }
+
 
     /**
      * Trigger an exception
@@ -195,7 +210,12 @@ class Walleta extends Driver
     protected function purchaseFailed($status)
     {
         $translations = [
-
+            "server_error" => "یک خطای داخلی رخ داده است.",
+            "ip_address_error" => "آدرس IP پذیرنده صحیح نیست.",
+            "validation_error" => "اطلاعات ارسال شده صحیح نیست.",
+            "merchant_error" => "کد پذیرنده معتبر نیست.",
+            "payment_token_error" => "شناسه پرداخت معتبر نیست.",
+            "invoice_amount_error" => "مبلغ تراکنش با مبلغ پرداخت شده مطابقت ندارد.",
         ];
 
         if (array_key_exists($status, $translations)) {
