@@ -183,6 +183,14 @@ return [
             'callbackUrl' => '',
             'description' => 'payment using sepehr(saderat)',
         ],
+        'walleta' => [
+            'apiPurchaseUrl' => 'https://cpg.walleta.ir/payment/request.json',
+            'apiPaymentUrl' => 'https://cpg.walleta.ir/ticket/',
+            'apiVerificationUrl' => 'https://cpg.walleta.ir/payment/verify.json',
+            'merchantId' => '',
+            'callbackUrl' => 'http://yoursite.com/path/to',
+            'description' => 'payment using walleta',
+        ],
         'yekpay' => [
             'apiPurchaseUrl' => 'https://gate.yekpay.com/api/payment/server?wsdl',
             'apiPaymentUrl' => 'https://gate.yekpay.com/api/payment/start/',
@@ -258,6 +266,7 @@ return [
         'sadad' => \Tookantech\Multipay\Drivers\Sadad\Sadad::class,
         'saman' => \Tookantech\Multipay\Drivers\Saman\Saman::class,
         'sepehr' => \Tookantech\Multipay\Drivers\Sepehr\Sepehr::class,
+        'walleta' => \Tookantech\Multipay\Drivers\Walleta\Walleta::class,
         'yekpay' => \Tookantech\Multipay\Drivers\Yekpay\Yekpay::class,
         'zarinpal' => \Tookantech\Multipay\Drivers\Zarinpal\Zarinpal::class,
         'zibal' => \Tookantech\Multipay\Drivers\Zibal\Zibal::class,
