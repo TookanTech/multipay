@@ -1,14 +1,14 @@
 <?php
 
-namespace Shetabit\Multipay\Drivers\Walleta;
+namespace Tookantech\Multipay\Drivers\Walleta;
 
 use GuzzleHttp\Client;
-use Shetabit\Multipay\Abstracts\Driver;
-use Shetabit\Multipay\Exceptions\PurchaseFailedException;
-use Shetabit\Multipay\Contracts\ReceiptInterface;
-use Shetabit\Multipay\Invoice;
-use Shetabit\Multipay\Receipt;
-use Shetabit\Multipay\RedirectionForm;
+use Tookantech\Multipay\Abstracts\Driver;
+use Tookantech\Multipay\Exceptions\PurchaseFailedException;
+use Tookantech\Multipay\Contracts\ReceiptInterface;
+use Tookantech\Multipay\Invoice;
+use Tookantech\Multipay\Receipt;
+use Tookantech\Multipay\RedirectionForm;
 
 class Walleta extends Driver
 {
@@ -55,6 +55,7 @@ class Walleta extends Driver
      */
     public function purchase()
     {
+
         $result = $this->token();
 
         if (!isset($result['status_code']) or $result['status_code'] != 200) {
