@@ -48,6 +48,7 @@ class Etebarino extends Driver
      */
     public function purchase()
     {
+        $this->invoice->uuid(crc32($this->invoice->getUuid()));
 
         $result = $this->token();
 
@@ -55,7 +56,7 @@ class Etebarino extends Driver
             $this->purchaseFailed($result['content']);
         }
 
-        $this->invoice->transactionId($result['content']['token']);
+        $this->invoice->transactionId($result['content']);
 
         // return the transaction's id
         return $this->invoice->getTransactionId();
@@ -76,7 +77,7 @@ class Etebarino extends Driver
     /**
      * Verify payment
      *
-     * @return mixed|Receipt
+     * @return mixed|Receipta
      *
      * @throws PurchaseFailedException
      */
@@ -88,13 +89,16 @@ class Etebarino extends Driver
             $this->purchaseFailed($result['content']);
         }
 
-        $receipt = $this->createReceipt($this->invoice->getTransactionId());
+        $receipt = $this->createReceipt($this->invoice->getDetail('referenceCode'));
+        $receipt->detail([
+            'referenceNo' => $this->invoice->getDetail('referenceCode'),
+        ]);
 
         return $receipt;
     }
 
     /**
-     * send request to etebarino
+     * send request to Etebarino
      *
      * @param $method
      * @param $url
@@ -115,7 +119,7 @@ class Etebarino extends Driver
 
         return [
             'status_code' => $response->getStatusCode(),
-            'content' => json_decode($response->getBody()->getContents(), true)
+            'content' => $response->getBody()->getContents()
         ];
     }
 
@@ -141,25 +145,19 @@ class Etebarino extends Driver
     public function token(): array
     {
         return $this->callApi('POST', $this->settings->apiPurchaseUrl, [
-            'terminalCode' => (int)$this->settings->terminalId,
-            'merchantCode' => (int)$this->settings->merchantId,
-            'termidalUser' => (int)$this->settings->username,
+            'terminalCode' => $this->settings->terminalId,
+            'terminalUser' => $this->settings->username,
+            'merchantCode' => $this->settings->merchantId,
             'terminalPass' => $this->settings->password,
-            'merchantRefCode' => 123465987,
-            'description' => $this->invoice->getUuid(),
-            'returnUrl' => $this->settings->callbackUrl,
-            'paymentItems' => [
-                [
-                    'productGroup'=>1001,
-                    'amount'=>25000,
-                    'description' =>'desc'
-                ]
-            ],
+            'merchantRefCode' => $this->invoice->getUuid(),
+            "description" => $this->invoice->getDetail('description'),
+            "returnUrl" => $this->settings->callbackUrl,
+            'paymentItems' => $this->getItems(),
         ]);
     }
 
     /**
-     * call verift transaction request
+     * call verify transaction request
      *
      * @return array
      */
@@ -167,10 +165,11 @@ class Etebarino extends Driver
     {
         return $this->callApi('POST', $this->settings->apiVerificationUrl, [
             'terminalCode' => $this->settings->terminalId,
+            'terminalUser' => $this->settings->username,
             'merchantCode' => $this->settings->merchantId,
-            'termidalUser' => $this->settings->username,
             'terminalPass' => $this->settings->password,
-            'merchantRefCode' => $this->invoice->getUuid(),
+            'merchantRefCode' => $this->invoice->getDetail('uuid'),
+            'referenceCode' => $this->invoice->getDetail('referenceCode')
         ]);
     }
 
@@ -187,7 +186,7 @@ class Etebarino extends Driver
          *   $items = [
          *       [
          *           "productGroup" => 1000,
-         *           "amount" => 1000,
+         *           "amount" => 1000, //Rial
          *           "description" => "desc"
          *       ]
          *   ];
@@ -199,23 +198,12 @@ class Etebarino extends Driver
     /**
      * Trigger an exception
      *
-     * @param $status
+     * @param $message
      *
      * @throws PurchaseFailedException
      */
-    protected function purchaseFailed($status)
+    protected function purchaseFailed($message)
     {
-        $translations = [
-            "ACCESS_DENIED" => "اطلاعات ارسال‌شده درست نمی‌باشد.",
-            "invalid_payment_item" => "گروه‌های کالایی صحیح نمی‌باشد.",
-            "BAD_INPUT" => "پارامترهای نوع داده‌ها یا ساختار گروه‌های کالایی یا کدیکتای سفارش صحیح نمی‌باشد.",
-            "merchant_not_found" => "کد فروشنده صحیح نمی‌باشد."
-        ];
-
-        if (array_key_exists($status, $translations)) {
-            throw new PurchaseFailedException($translations[$status]);
-        } else {
-            throw new PurchaseFailedException('خطای ناشناخته ای رخ داده است.');
-        }
+        throw new PurchaseFailedException($message);
     }
 }
