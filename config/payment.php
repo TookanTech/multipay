@@ -63,9 +63,9 @@ return [
             'callbackUrl' => 'http://yoursite.com/path/to',
         ],
         'etebarino' => [
-            'apiPurchaseUrl' => 'https://api-test.etebarino.com/public/merchant/request-payment',
-            'apiPaymentUrl' => 'https://{panel-domain}/gateway/public/ipg',
-            'apiVerificationUrl' => 'https://api-test.etebarino.com/public/merchant/verify-payment',
+            'apiPurchaseUrl' => 'https://api.etebarino.com/public/merchant/request-payment',
+            'apiPaymentUrl' => 'https://panel.etebarino.com/gateway/public/ipg',
+            'apiVerificationUrl' => 'https://api.etebarino.com/public/merchant/verify-payment',
             'merchantId' => '',
             'terminalId' => '',
             'username' => '',
